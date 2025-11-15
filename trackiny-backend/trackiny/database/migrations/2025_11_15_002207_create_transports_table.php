@@ -12,11 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transports', function (Blueprint $table) {
-            $table->id();
+            $table->transport_id();
             $table->timestamps();
-        });
-    }
+            $table->string('company_name');
+            $table->string('license_number');
+            $table->integer('fleet_size');
+            $table->string('registration_number');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('contact_person');
 
+    });
+    }
     /**
      * Reverse the migrations.
      */
