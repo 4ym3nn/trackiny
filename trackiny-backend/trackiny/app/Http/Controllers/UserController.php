@@ -25,8 +25,13 @@ class UserController extends Controller
     {
         return $this->hasOne(Company::class);
     }
-
-    function login() {
+    public function isTransport(){
+        return $this->role === 'transport';
+    }
+     public function isCompany(){
+        return $this->role === 'company';
+    }
+   function login() {
         $incomingFields=request()->validate([
             'email'=>['required','email'],
             'password'=>['required']
