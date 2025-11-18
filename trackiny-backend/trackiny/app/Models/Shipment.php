@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Model\ShipmentItem;
 use App\Model\Company;
 use App\Model\Transport;
 class Shipment extends Model
 {
     protected $fillable = [
-        'tracking_number',
         'company_id',
         'transport_id',
         'origin_address',
@@ -22,7 +22,15 @@ class Shipment extends Model
         'priority',
         'notes',
     ];
+    protected $hidden = [
+        'tracking_number'
+    ];
 
+    public static function booted() {
+        static::creating(function ($model){
+            $model->tracking_number=Str::uuid();
+        });
+    }
        public function shipment_item():HasMany
     {
         return $this->hasMany(ShipmentItem::class,'shipment_id','id');

@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Module\User;
-use Illuminate\Http\Request;
-use App\Module\Transport;
-use App\Module\Shipment;
+
+use App\Models\Shipment;
+
 class TransportController extends Controller
 {
    public function addShipment() {
@@ -23,4 +22,11 @@ class TransportController extends Controller
     ]);
         return Shipment::create($shipment);
     }
+    public function getShipments() {
+        return Transport::find()->shipments;
+    }
+    public function getShipment(string $shipment_id) {
+        return Transport::find($shipment_id)->shipments;
+    }
+
 }
