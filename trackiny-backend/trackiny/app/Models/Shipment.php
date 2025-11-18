@@ -22,6 +22,10 @@ class Shipment extends Model
         'priority',
         'notes',
     ];
+    protected $hidden = [
+        'tracking_number'
+    ];
+
     public static function booted() {
         static::creating(function ($model){
             $model->tracking_number=Str::uuid();
