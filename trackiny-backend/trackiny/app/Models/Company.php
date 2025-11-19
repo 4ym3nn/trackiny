@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\User;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\User;
+use App\Models\Shipment;
 
-use App\Model\Shipment;
 class Company extends Model
 {
     protected $fillable = [
@@ -21,9 +22,9 @@ class Company extends Model
     {
         return $this->belongsTo(User::class,'user_id','id');
     }
-    public function shipment():BelongsToMany
+    public function shipments():HasMany
     {
-        return $this->belongsToMany(Shipment::class);
+        return $this->hasMany(Shipment::class);
     }
 
 }
