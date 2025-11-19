@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\User;
-use App\Model\Shipment;
+use App\Models\User;
+use App\Models\Shipment;
 
 class Transport extends Model
 {
@@ -12,9 +12,9 @@ class Transport extends Model
     {
         return $this->belongsTo(User::class,'user_id','id');
     }
-    public function shipment():BelongsToMany
+    public function shipment():HasMany
     {
-        return $this->belongsToMany(Shipment::class,'shipment_id','id');
+        return $this->hasMany(Shipment::class,'shipment_id','id');
     }
 
     protected $fillable = [
