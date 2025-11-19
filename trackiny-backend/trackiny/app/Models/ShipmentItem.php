@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Shipment;
+use App\Models\Shipment;
 class ShipmentItem extends Model
 {
     protected $fillable = [
