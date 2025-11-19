@@ -6,7 +6,6 @@ use App\Models\Company;
 use App\Models\Transport;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -27,12 +26,17 @@ class AuthController extends Controller
         if (! $user) {
             return response()->json(['message' => 'user does not exists'], 400);
         }
-        $isAuthenticated=Hash::check($request->password, $user->password);
-        if (!$isAuthenticated)  {
+        $hasToken = $user->tokens()->first();
+        if ($hasToken) {
+            return response()->json(['message' => 'user already autheticated,consider logging out first'], 400);
+        }
+        $isAuthenticated = Hash::check($request->password, $user->password);
+        if (! $isAuthenticated) {
 
             return response()->json(['message' => 'password is incorrect'], 400);
         } else {
             $token = $user->createToken($user->name);
+
             return response()->json(['token' => $token->plainTextToken], 200);
         }
 
