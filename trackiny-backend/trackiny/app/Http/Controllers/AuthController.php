@@ -35,8 +35,8 @@ class AuthController extends Controller
 
             return response()->json(['message' => 'password is incorrect'], 400);
         } else {
-            $token = $user->createToken($user->name);
-
+            $abilities=[$user->role];
+            $token = $user->createToken($user->name,$abilities);
             return response()->json(['token' => $token->plainTextToken], 200);
         }
 
