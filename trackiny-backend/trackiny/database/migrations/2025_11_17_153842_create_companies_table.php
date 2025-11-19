@@ -15,7 +15,8 @@ return new class extends Migration
     $table->id();
     $table->unsignedBigInteger('user_id')->unique();
     $table->string('company_name');
-    $table->string('registration_number')->unique();
+    // set to unqiue TO DO ;
+    $table->string('registration_number');
     $table->string('address');
     $table->string('phone');
     $table->string('contact_person');
