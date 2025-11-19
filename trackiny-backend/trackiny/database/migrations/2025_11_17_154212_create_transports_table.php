@@ -17,7 +17,8 @@ return new class extends Migration
     $table->string('company_name');
     $table->string('registration_number')->unique();
     $table->string('fleet_size');
-    $table->string('license_number')->unique();
+    //TO DO : set to unique
+    $table->string('license_number');
     $table->string('address');
     $table->string('phone');
     $table->string('contact_person');
