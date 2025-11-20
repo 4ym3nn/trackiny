@@ -26,10 +26,10 @@ class AuthController extends Controller
         if (! $user) {
             return response()->json(['message' => 'user does not exists'], 400);
         }
-        $hasToken = $user->tokens()->first();
-        if ($hasToken) {
-            return response()->json(['message' => 'user already autheticated,consider logging out first'], 400);
-        }
+        /* $hasToken = $user->tokens()->first(); */
+        /* if ($hasToken) { */
+        /*     return response()->json(['message' => 'user already autheticated,consider logging out first'], 400); */
+        /* } */
         $isAuthenticated = Hash::check($request->password, $user->password);
         if (! $isAuthenticated) {
 
